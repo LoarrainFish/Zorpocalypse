@@ -1,0 +1,92 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5380906984107796539
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5380906984107796537}
+  - component: {fileID: 5380906984107796538}
+  m_Layer: 0
+  m_Name: GameManger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5380906984107796537
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5380906984107796539}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 49.839382, y: -9.524353, z: -9.570308}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 5380906984673891934}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5380906984107796538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5380906984107796539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5f2d594de5600a4f98b3fba593234d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LevelWaves: {fileID: 11400000, guid: f24cd84c026324948afff1e785953267, type: 2}
+  ZorpSpawn: {fileID: 5380906984673891935}
+  WaveNumber: 0
+  WaveSegement: 0
+  time: 0
+  spawnInterval: 0
+  ZorpIndex:
+  - {fileID: 5985214627025788770, guid: 6adc2abee9cc2194695f54ecac13edaa, type: 3}
+  - {fileID: 6415875456634562399, guid: 74add37dbaf19d94aa274d0f674cd141, type: 3}
+  - {fileID: 4548648246504311464, guid: f2dfa0ca5c3aab9409e5dd31a2412231, type: 3}
+  - {fileID: 182657197504991938, guid: 5f38997588c985e4e8be69b1dc04b987, type: 3}
+  - {fileID: 6615995407574366318, guid: f369a8afc76a0a241855f78586b9e6e7, type: 3}
+  ZorpSpawnList: []
+  ZorpsSpawnQueue: []
+  NextZorpSpawnInt: 0
+  currentZorp: {fileID: 0}
+--- !u!1 &5380906984673891935
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5380906984673891934}
+  m_Layer: 0
+  m_Name: Zorp Spawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5380906984673891934
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5380906984673891935}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3.9584045, y: -1.051588, z: -2.2157621}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5380906984107796537}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
