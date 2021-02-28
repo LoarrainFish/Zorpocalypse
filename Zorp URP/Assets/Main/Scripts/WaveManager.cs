@@ -4,15 +4,29 @@ using UnityEngine;
 
 public class WaveManager : MonoBehaviour
 {
+    public WaveMaster LevelWaves;
+    public GameObject ZorpSpawnFocus;
+    public int WaveNumber;
+    public int WaveSegment;
+    public float time; 
+
+
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        GenerateWaves();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void GenerateWaves()
+    {
+
+
     }
 }

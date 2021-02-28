@@ -56,7 +56,7 @@ public class ZorpMove : MonoBehaviour
         }
 
         distance = Vector3.Distance(patrolWayPoints[currentPatrolInt - 1].transform.position, Zorp.transform.position);
-        Debug.Log("Distance to next: " + distance + "  Waypoint:" + currentPatrolInt);
+        //Debug.Log("Distance to next: " + distance + "  Waypoint:" + currentPatrolInt);
 
     }
 

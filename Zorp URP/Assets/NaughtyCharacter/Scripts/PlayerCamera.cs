@@ -21,7 +21,7 @@ namespace NaughtyCharacter
 		public void SetControlRotation(Vector2 controlRotation)
 		{
 			// Y Rotation (Yaw Rotation)
-			Quaternion rigTargetLocalRotation = Quaternion.Euler(0.0f, controlRotation.y, 0.0f);
+			Quaternion rigTargetLocalRotation = Quaternion.Euler(10.0f, controlRotation.y, 0.0f);
 
 			// X Rotation (Pitch Rotation)
 			Quaternion pivotTargetLocalRotation = Quaternion.Euler(controlRotation.x, 0.0f, 0.0f);

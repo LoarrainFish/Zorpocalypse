@@ -22,9 +22,14 @@ public class PlaceObject : MonoBehaviour
 
     public Canvas TrapUI;
     private bool trapUIOpen;
+    public Transform trapSnapLocation;
+
+    public float _offsetY = 0.5f;
 
     [SerializeField]
     LayerMask chosenLayers;
+
+    public GameObject _player;
 
     // Start is called before the first frame update
     void Start()
@@ -115,16 +120,37 @@ public class PlaceObject : MonoBehaviour
         RaycastHit hitInfo;
         if(Physics.Raycast(ray, out hitInfo, Mathf.Infinity, layerMask))
         {
-            var currentPos = hitInfo.point;
+            var currentPos = hitInfo.transform.position + hitInfo.normal;
 
+            Transform[] snapLocations = hitInfo.transform.GetComponentsInChildren<Transform>();
+            float nearestDistance = float.MaxValue;
+            Transform nearestObject = null;
+
+            for (int i = 0; i < snapLocations.Length; i++)
+            {
+                float distance = (snapLocations[i].transform.position - _player.transform.position).sqrMagnitude;
+
+                if (distance < nearestDistance)
+                {
+                    nearestObject = snapLocations[i];
+                    nearestDistance = distance;
+                }
+            }
+
+            Vector3 finalSnapLocation = nearestObject.transform.position;
+            finalSnapLocation.y = finalSnapLocation.y - 2.5f;
+
+            Debug.Log(finalSnapLocation);
+                
 
             if (hitInfo.transform.tag == "TrapAllowed")
             {
-                currentPlaceableObject.transform.position = hitInfo.point;
+                currentPlaceableObject.transform.position = nearestObject.transform.position ;
             }
 
         }
     }
+
 
     private void HandleNewObjectHotKey(int requestedTrapIndex)
     {
