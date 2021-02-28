@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1809164288318377226}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: HP Container
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 1025746598858634952}
   - component: {fileID: 8288084189673776223}
   - component: {fileID: 1903242221935444697}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: MAGE1_R_Hand1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 6171512042322906858}
   - component: {fileID: 3667248369496632498}
   - component: {fileID: 6390634425635789556}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Body_MAGE1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,7 +204,7 @@ GameObject:
   - component: {fileID: 5824917790200666394}
   - component: {fileID: 3120625273176290865}
   - component: {fileID: 7077198018210143357}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: MAGE1_R_Eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -283,7 +283,7 @@ GameObject:
   - component: {fileID: 5596854992262058208}
   - component: {fileID: 3800580364771670586}
   - component: {fileID: 8718322438470964899}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: MAGE1_Nobbly
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -362,7 +362,7 @@ GameObject:
   - component: {fileID: 2942850147286891661}
   - component: {fileID: 3913617447598981016}
   - component: {fileID: 2103852648207982465}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: MAGE1_Body1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -442,7 +442,7 @@ GameObject:
   - component: {fileID: 185354024403383446}
   - component: {fileID: 8023609477162014125}
   - component: {fileID: 3716204622311176983}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -540,7 +540,7 @@ GameObject:
   - component: {fileID: 4160457415130784207}
   - component: {fileID: 1746118452164197413}
   - component: {fileID: 6828919084221643424}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: MAGE1_R_Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -622,7 +622,7 @@ GameObject:
   - component: {fileID: 2277759264484349578}
   - component: {fileID: 2277759264484349579}
   - component: {fileID: 2277759264484349303}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Base 1
   m_TagString: enemy
   m_Icon: {fileID: 0}
@@ -663,13 +663,13 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5518027772032417086}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 100
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!65 &2277759264484349302
 BoxCollider:
@@ -762,7 +762,7 @@ GameObject:
   - component: {fileID: 2615215791225885556}
   - component: {fileID: 7744795877567694891}
   - component: {fileID: 230834158500588941}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: HP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -888,7 +888,7 @@ GameObject:
   - component: {fileID: 9146251250790862981}
   - component: {fileID: 7277928670979193451}
   - component: {fileID: 4256298389884915223}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: HP BAR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -960,9 +960,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6974033998768070603}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Base Zorp
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -993,7 +993,7 @@ GameObject:
   - component: {fileID: 3717034396035854443}
   - component: {fileID: 1848096277205255377}
   - component: {fileID: 4794800751838508092}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: MAGE1_R_Leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1072,7 +1072,7 @@ GameObject:
   - component: {fileID: 3053294082671098930}
   - component: {fileID: 3548691455717066564}
   - component: {fileID: 974799235973155870}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: MAGE1_R_Hand2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1151,7 +1151,7 @@ GameObject:
   - component: {fileID: 6826359814453829363}
   - component: {fileID: 6135868011611820219}
   - component: {fileID: 8522962113955744567}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: MAGE1_R_Hand3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1230,7 +1230,7 @@ GameObject:
   - component: {fileID: 752690221952271263}
   - component: {fileID: 3544945547372425307}
   - component: {fileID: 6712014355343481608}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: MAGE1_L_Eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1309,7 +1309,7 @@ GameObject:
   - component: {fileID: 3717779326908655773}
   - component: {fileID: 1036091253615132850}
   - component: {fileID: 1543776251319807401}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: MAGE1_L_leg1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

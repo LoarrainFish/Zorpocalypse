@@ -108,7 +108,7 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator WaveDelay()
     {
-
+        yield return new WaitForSeconds(0);
 
     }
 
