@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70f513a557ffbc049a5578e01a3d6273, type: 3}
   m_Name: Small Platoon
   m_EditorClassIdentifier: 
-  EnemyTypeID: 1
+  EnemyTypeID: 0
   AmountOfEnemies: 6

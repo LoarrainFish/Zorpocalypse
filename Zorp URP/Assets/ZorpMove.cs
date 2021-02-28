@@ -7,7 +7,7 @@ using UnityEngine.AI;
 public class ZorpMove : MonoBehaviour
 {
     [SerializeField]
-    Transform _destination;
+    GameObject _destination;
 
     HealthBar _healthBar;
 
@@ -25,9 +25,10 @@ public class ZorpMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Zorp = this.gameObject;
         _navMeshAgent = this.gameObject.GetComponent<NavMeshAgent>();
         _healthBar = this.gameObject.GetComponent<HealthBar>();
-
+        _destination = GameObject.FindGameObjectWithTag("Finish");
         if (_navMeshAgent == null)
         {
             Debug.LogError("The nax mesh agent component is not attached to " + gameObject.name);
@@ -55,7 +56,6 @@ public class ZorpMove : MonoBehaviour
             //_navMeshAgent.speed = 2.5f;
         }
 
-        distance = Vector3.Distance(patrolWayPoints[currentPatrolInt - 1].transform.position, Zorp.transform.position);
         //Debug.Log("Distance to next: " + distance + "  Waypoint:" + currentPatrolInt);
 
     }
@@ -63,22 +63,7 @@ public class ZorpMove : MonoBehaviour
 
     private void SetDestination()
     {
-
-        if(distance < 2f)
-        {
-            currentPatrolInt++;
-            _navMeshAgent.SetDestination(patrolWayPoints[currentPatrolInt].transform.position);
-
-            SetDestination();
-        }
-
-        if(currentPatrolInt == 0)
-        {
-            _navMeshAgent.SetDestination(patrolWayPoints[0].transform.position);
-            currentPatrolInt++;
-
-           
-        }
+        _navMeshAgent.destination = _destination.transform.position;
 
     }
 

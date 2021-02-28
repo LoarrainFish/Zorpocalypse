@@ -138,7 +138,7 @@ public class PlaceObject : MonoBehaviour
             }
 
             Vector3 finalSnapLocation = nearestObject.transform.position;
-            finalSnapLocation.y = finalSnapLocation.y - 2.5f;
+            finalSnapLocation.y = finalSnapLocation.y;
 
             Debug.Log(finalSnapLocation);
                 

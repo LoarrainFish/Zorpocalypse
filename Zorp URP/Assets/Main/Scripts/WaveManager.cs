@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class WaveManager : MonoBehaviour
 {
-    public WaveMaster LevelWaves;
+    public WaveMaster _WaveMaster;
+    public Wave[] Waves;
+    public WaveSegment[] CurrentWaveSegements;
     public GameObject ZorpSpawnFocus;
     public int WaveNumber;
     public int WaveSegment;
@@ -26,7 +28,10 @@ public class WaveManager : MonoBehaviour
 
     public void GenerateWaves()
     {
+        foreach(Wave wave in _WaveMaster.LevelWaves)
+        {
 
+        }
 
     }
 }

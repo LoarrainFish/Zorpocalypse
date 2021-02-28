@@ -4,97 +4,121 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public WaveMaster LevelWaves;
-    public GameObject ZorpSpawn;
-    public int WaveNumber;
-    public int WaveSegement;
+    public WaveMaster _WaveMaster;
+    public List<Wave> WaveList;
+    public Wave[] Waves;
+    List<int> zorpIndexList;
+    public List<WaveSegment> currentWaveSegementsList;
+    public WaveSegment[] currentWaveSegements;
+    public GameObject[] Zorps;
+    public GameObject[] SpawnQueue;
+    [HideInInspector]
+    public List<GameObject> SpawnQueueList;
+    public GameObject ZorpSpawnFocus;
+    public GameObject ZorpSpawnLocation;
+    public List<int> EnemiesPerWaveList;
+    public int[] EnemiesPerWave;
+    public int EnemiesThisWave;
+    public int WaveNumber = 1;
+    public int WaveSegment;
     public float time;
-    public float spawnInterval;
 
-    public GameObject[] ZorpIndex;
+    private int spawnNumber = 1;
 
-    public List<GameObject> ZorpSpawnList;
-    public GameObject[] ZorpsSpawnQueue;
-    public int NextZorpSpawnInt;
-    public GameObject currentZorp;
-    
 
     // Start is called before the first frame update
     void Start()
     {
-        StartWaves();
-    }
-
-    private void Awake()
-    {
-        
+        GenerateWaves();
+        UnpackWave();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.X))
+
+    }
+
+    public void GenerateWaves()
+    {
+
+        for (int i = 0; i < _WaveMaster.LevelWaves.Length; i++)
         {
-            StartWaves();
+            WaveList.Add(_WaveMaster.LevelWaves[i]);
         }
 
-        time = Time.deltaTime;
+        Waves = WaveList.ToArray();
+
     }
-    
 
-    void StartWaves()
+    public void UnpackWave()
     {
-        int Waves = LevelWaves.LevelWaves.Length;
-
-        Debug.Log(Waves);
 
 
-        //Disect Wave Object
-        for (int i = 0; i < Waves; i++)
+        for (int i = 0; i < Waves.Length; i++)
         {
-            int WaveSegments = LevelWaves.LevelWaves[WaveNumber].WaveSegments.Length;
-            Debug.Log("Itt: " + i + "Segs:" + WaveSegments);
-
-            for (int z = 0; z < WaveSegments; z++)
+            for (int a = 0; a < Waves[i].WaveSegments.Length; a++)
             {
-                for (int n = 0; n < LevelWaves.LevelWaves[WaveNumber].WaveSegments.Length; n++)
-                {
-                    int EnemyID = LevelWaves.LevelWaves[WaveNumber].WaveSegments[z].EnemyTypeID;
-                    int EnemyAmount = LevelWaves.LevelWaves[WaveNumber].WaveSegments[z].AmountOfEnemies;
-                    CompileWave(EnemyID, EnemyAmount);
-                }
-
+                currentWaveSegementsList.Add(Waves[i].WaveSegments[a]);
             }
         }
 
-        GameObject[] _ZorpsSpawnQueue = ZorpSpawnList.ToArray();
-
-        ZorpsSpawnQueue = _ZorpsSpawnQueue;
-
-        NextZorpSpawnInt = 0;
-        StartCoroutine("Spawn");
+        currentWaveSegements = currentWaveSegementsList.ToArray();
+        QueueWave();
     }
 
-    void CompileWave(int EnemyID, int EnemyAmount)
+    public void QueueWave()
     {
-        ZorpSpawnList.Add(ZorpIndex[1]);
-    }
-
-    IEnumerator Spawn()
-    {
-        if(ZorpsSpawnQueue.Length > NextZorpSpawnInt)
+        for (int i = 0; i < currentWaveSegements.Length; i++)
         {
-            Debug.Log("Spawn");
-            //Instantiate(ZorpsSpawnQueue[NextZorpSpawnInt], ZorpSpawn.transform.position);
-
-            yield return new WaitForSeconds(2);
-
-            StartCoroutine("Spawn");
+            int tempZorpID = currentWaveSegements[i].EnemyTypeID;
+            int tempAmountOfEnemies = currentWaveSegements[i].AmountOfEnemies;
+            ReadSegementContainer(tempZorpID, tempAmountOfEnemies);
         }
 
+        SpawnQueue = SpawnQueueList.ToArray();
+        EnemiesPerWave = EnemiesPerWaveList.ToArray();
+        SpawnZorps();
 
+    }
+
+    public void ReadSegementContainer(int ZorpID, int AmountOfEnemies)
+    {
+        Debug.Log("Segement Unpacking!");
+        for (int i = 0; i < AmountOfEnemies; i++)
+        {
+            SpawnQueueList.Add(Zorps[ZorpID]);
+            EnemiesPerWaveList.Add(AmountOfEnemies);
+        }
+
+    }
+    private void SpawnZorps()
+    {
+        if(spawnNumber <= SpawnQueue.Length)
+        {
+            Instantiate(SpawnQueue[spawnNumber], ZorpSpawnLocation.transform.position, Quaternion.Euler(new Vector3(0f, 90f, 0f)));
+            StartCoroutine("SpawnDelay");
+        }
+        else
+        {
+            Debug.Log("Spawn Complete");
+        }
+
+    }
+
+    public IEnumerator WaveDelay()
+    {
 
 
     }
+
+    public IEnumerator SpawnDelay()
+    {
+        spawnNumber++;
+        yield return new WaitForSeconds(2);
+        SpawnZorps();
+
+    }
+    
 
 }
