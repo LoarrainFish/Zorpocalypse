@@ -23,7 +23,11 @@ public class PlaceObject : MonoBehaviour
     public Canvas TrapUI;
     private bool trapUIOpen;
     public Transform trapSnapLocation;
-
+    [SerializeField]
+    private Transform nearestObject;
+    private List<GameObject> snapObjectsList;
+    [SerializeField]
+    private GameObject[] snapObjects;
     public float _offsetY = 0.5f;
 
     [SerializeField]
@@ -111,6 +115,24 @@ public class PlaceObject : MonoBehaviour
 
     }
 
+    Transform GetClosest(Transform[] targetSnapPoints)
+    {
+        Transform tMin = null;
+        float minDist = Mathf.Infinity;
+        Vector3 currentPos = transform.position;
+        foreach (Transform t in targetSnapPoints)
+        {
+            float dist = Vector3.Distance(t.position, currentPos);
+            if (dist < minDist)
+            {
+                tMin = t;
+                minDist = dist;
+            }
+        }
+        return tMin;
+    }
+
+
     private void MoveCurrentObjectToMouse()
     {
         int layerMask = 1 << 9;
@@ -122,13 +144,13 @@ public class PlaceObject : MonoBehaviour
         {
             var currentPos = hitInfo.transform.position + hitInfo.normal;
 
-            Transform[] snapLocations = hitInfo.transform.GetComponentsInChildren<Transform>();
-            float nearestDistance = float.MaxValue;
-            Transform nearestObject = null;
+            Transform[] snapLocations = hitInfo.transform.GetComponentsInChildren<Transform>();           
 
+            float nearestDistance = float.MaxValue;
             for (int i = 0; i < snapLocations.Length; i++)
             {
                 float distance = (snapLocations[i].transform.position - _player.transform.position).sqrMagnitude;
+                float distanceToSnap = Vector3.Distance(snapLocations[i].transform.position, hitInfo.point);
 
                 if (distance < nearestDistance)
                 {
@@ -137,15 +159,17 @@ public class PlaceObject : MonoBehaviour
                 }
             }
 
-            Vector3 finalSnapLocation = nearestObject.transform.position;
-            finalSnapLocation.y = finalSnapLocation.y;
+            for (int i = 0; i < snapLocations.Length; i++)
+            {
+                
+            }
 
-            Debug.Log(finalSnapLocation);
                 
 
             if (hitInfo.transform.tag == "TrapAllowed")
             {
-                currentPlaceableObject.transform.position = nearestObject.transform.position ;
+                currentPlaceableObject.transform.position = nearestObject.transform.position;
+                currentPlaceableObject.transform.rotation = nearestObject.transform.rotation;
             }
 
         }
