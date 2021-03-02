@@ -159,17 +159,13 @@ public class PlaceObject : MonoBehaviour
                 }
             }
 
-            for (int i = 0; i < snapLocations.Length; i++)
-            {
-                
-            }
 
                 
 
             if (hitInfo.transform.tag == "TrapAllowed")
             {
                 currentPlaceableObject.transform.position = nearestObject.transform.position;
-                currentPlaceableObject.transform.rotation = nearestObject.transform.rotation;
+                currentPlaceableObject.transform.rotation = nearestObject.transform.rotation ;
             }
 
         }
