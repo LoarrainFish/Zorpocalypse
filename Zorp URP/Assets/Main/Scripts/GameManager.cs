@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,14 +21,22 @@ public class GameManager : MonoBehaviour
     public List<int> EnemiesPerWaveList;
     public int[] EnemiesPerWave;
     public int EnemiesThisWave;
+    private List<float> RoundLengthList;
+    public float[] RoundLength;
     [HideInInspector]
     public int WaveID;
     public int WaveNumber = 1;
     public int WaveSegment;
     public float time;
 
+    private float spawnDelayTime = 1.5f;
+
     public int spawnNumberWave = 0;
     public int spawnNumberTotal = 0;
+
+    public TextMeshProUGUI statusText;
+
+    private bool UIUpdate;
 
 
     // Start is called before the first frame update
@@ -34,13 +44,13 @@ public class GameManager : MonoBehaviour
     {
         GenerateWaves();
         UnpackWave();
-        EnemiesPerWave = EnemiesPerWaveList.ToArray();
+        SpawnZorps(1);
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        UIUpdate = true;
     }
 
     public void GenerateWaves()
@@ -85,56 +95,95 @@ public class GameManager : MonoBehaviour
         }
 
         SpawnQueue = SpawnQueueList.ToArray();
-        //EnemiesPerWave = EnemiesPerWaveList.ToArray();
-        SpawnZorps(1);
-
+        EnemiesPerWave = EnemiesPerWaveList.ToArray();
     }
 
-    int itt;
     public void ReadSegementContainer(int ZorpID, int AmountOfEnemies, int WaveSegements)
     {
 
-        Debug.Log("Segement Unpacking!");
         for (int i = 0; i < AmountOfEnemies; i++)
         {
             SpawnQueueList.Add(Zorps[ZorpID]);
         }
 
-
-
-
     }
+
+
+
     private void SpawnZorps(int state)
     {
         switch (state)
         {
-
             //First Wave. Longer Cooldown
             case 1:
                 StartCoroutine(WaveDelay(5));
+                CountDownClock(5f);
+                UpdateStatusBar(WaveNumber, false);
                 break;
             //Normal Wave Spawning State
             case 2:
-                StartCoroutine(SpawnDelay());
+                if(WaveNumber == 0)
+                {
+                    WaveNumber = 1;
+                }
+                if (spawnNumberWave <= EnemiesPerWave[WaveNumber - 1])
+                {
+                    spawnNumberWave++;
+                    spawnNumberTotal++;
+                    StartCoroutine(SpawnDelay());
+                }
+                else
+                {
+                    WaveNumber++;
+                    spawnNumberWave = 0;
+                    Debug.Log("Wave Ended");
+                    SpawnZorps(3);
+                    UIUpdate = false;
+                }
+                if (UIUpdate)
+                {
+                    Debug.Log("Update UI");
+                    //CountDownClock(RoundLength[WaveNumber]);
+                    UpdateStatusBar(WaveNumber, false);
+                    UIUpdate = false;
+                }
                 break;
             //Wave Downtime
             case 3:
+                UpdateStatusBar(WaveNumber, true);
+                CountDownClock(10f);
                 StartCoroutine(WaveDelay(10));
                 break;
         }
 
 
     }
+    public void UpdateStatusBar(int waveNumber, bool postWavePreperation)
+    {
+        Debug.Log(postWavePreperation);
+        if (!postWavePreperation)
+        {
+            if (waveNumber != 0)
+            {
+                statusText.text = "WAVE " + waveNumber;
+
+            }
+            else
+            {
+                statusText.text = "PREPERATION!";
+            }
+        }
+        else
+        {
+            statusText.text = "NEXT WAVE IN: ";
+        }
+
+    }
 
 
     public void CountDownClock(float TimeToCountDown)
     {
-
-        //Visual Countdown
-        //Tick Time Down
-        
-
-
+        Timer.Countdown(TimeToCountDown);     
     }
 
     public IEnumerator WaveDelay(int TimeToWait)
@@ -146,22 +195,9 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator SpawnDelay()
     {
-        if(spawnNumberWave <= EnemiesPerWave[WaveNumber])
-        {
-            yield return new WaitForSeconds(1.5f);
-            Instantiate(SpawnQueue[spawnNumberTotal], ZorpSpawnLocation.transform.position, Quaternion.Euler(new Vector3(0f, 90f, 0f)));
-            spawnNumberWave++;
-            spawnNumberTotal++;
-            SpawnZorps(2);
-
-        }
-        else
-        {
-            spawnNumberWave = 0;
-            Debug.Log("Wave Ended");
-            SpawnZorps(3);
-        }
-
+        Instantiate(SpawnQueue[spawnNumberTotal], ZorpSpawnLocation.transform.position, Quaternion.Euler(new Vector3(0f, 90f, 0f)));
+        yield return new WaitForSeconds(spawnDelayTime);
+        SpawnZorps(2);
     }
     
 
