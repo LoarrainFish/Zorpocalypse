@@ -25,9 +25,14 @@ public class GameManager : MonoBehaviour
     public float[] RoundLength;
     [HideInInspector]
     public int WaveID;
-    public int WaveNumber = 1;
+    public int WaveNumber = 0;
     public int WaveSegment;
     public float time;
+
+    GameObject _QUEUEMANAGEROBJECT;
+    QueueManager _QueueManager;
+    public List<Sprite> queueIconsList;
+    public Sprite[] queueIcons;
 
     private float spawnDelayTime = 1.5f;
 
@@ -44,9 +49,13 @@ public class GameManager : MonoBehaviour
 
     public static int ZorpsAlive;
 
+
     // Start is called before the first frame update
     void Start()
     {
+        _QUEUEMANAGEROBJECT = GameObject.FindWithTag("QueueVisualManager");
+        _QueueManager = _QUEUEMANAGEROBJECT.GetComponent<QueueManager>();
+
         GenerateWaves();
         UnpackWave();
     }
@@ -71,8 +80,6 @@ public class GameManager : MonoBehaviour
 
     public void UnpackWave()
     {
-
-
         for (int i = 0; i < Waves.Length; i++)
         {
             for (int a = 0; a < Waves[i].WaveSegments.Length; a++)
@@ -81,11 +88,17 @@ public class GameManager : MonoBehaviour
                 EnemiesThisWave += Waves[i].WaveSegments[a].AmountOfEnemies;
 
             }
+
+            queueIconsList.Add(Waves[i].waveIcon);
+
             EnemiesPerWaveList.Add(EnemiesThisWave);
             EnemiesThisWave = 0;
         }
 
+        queueIcons = queueIconsList.ToArray();
+
         currentWaveSegements = currentWaveSegementsList.ToArray();
+        GenerateQueueVisual();
         QueueWave();
         SpawnZorps(1);
     }
@@ -101,6 +114,11 @@ public class GameManager : MonoBehaviour
 
         SpawnQueue = SpawnQueueList.ToArray();
         EnemiesPerWave = EnemiesPerWaveList.ToArray();
+    }
+
+    public void GenerateQueueVisual()
+    {
+        _QueueManager.GenerateQueue(queueIcons);
     }
 
     public void ReadSegementContainer(int ZorpID, int AmountOfEnemies, int WaveSegements)
@@ -119,7 +137,7 @@ public class GameManager : MonoBehaviour
         {
             //First Wave. Longer Cooldown
             case 1:
-                StartCoroutine(WaveDelay(60));
+                StartCoroutine(WaveDelay(30));
                 UpdateStatusBar(WaveNumber, false);
                 break;
             //Normal Wave Spawning State
@@ -166,6 +184,7 @@ public class GameManager : MonoBehaviour
                 spawnNumberWave = 0;
                 Debug.Log("Wave Ended");
                 UIUpdate = false;
+                _QueueManager.UpdateQueue(WaveNumber - 1);
                 SpawnZorps(3);
                 break;
         }

@@ -17,3 +17,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 21d73475690d6e747b03956878eb8834, type: 2}
   - {fileID: 11400000, guid: 231b3dfa69fdb7a4b9fc7f81d5997c10, type: 2}
   - {fileID: 11400000, guid: 21d73475690d6e747b03956878eb8834, type: 2}
+  waveIcon: {fileID: 21300000, guid: 977b02ec3d894da45bcb7f84649de08c, type: 3}
