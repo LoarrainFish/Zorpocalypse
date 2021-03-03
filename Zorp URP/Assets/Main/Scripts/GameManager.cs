@@ -37,7 +37,8 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI statusText;
 
     private bool UIUpdate;
-
+    public Image TimerIcon;
+    public Image ZorpIcon;
 
     // Start is called before the first frame update
     void Start()
@@ -108,8 +109,6 @@ public class GameManager : MonoBehaviour
 
     }
 
-
-
     private void SpawnZorps(int state)
     {
         switch (state)
@@ -143,7 +142,7 @@ public class GameManager : MonoBehaviour
                 if (UIUpdate)
                 {
                     Debug.Log("Update UI");
-                    //CountDownClock(RoundLength[WaveNumber]);
+                    
                     UpdateStatusBar(WaveNumber, false);
                     UIUpdate = false;
                 }
@@ -155,31 +154,39 @@ public class GameManager : MonoBehaviour
                 StartCoroutine(WaveDelay(10));
                 break;
         }
-
-
     }
     public void UpdateStatusBar(int waveNumber, bool postWavePreperation)
     {
-        Debug.Log(postWavePreperation);
         if (!postWavePreperation)
         {
             if (waveNumber != 0)
             {
+                TimerIcon.gameObject.SetActive(false);
+                ZorpIcon.gameObject.SetActive(true);
                 statusText.text = "WAVE " + waveNumber;
-
             }
             else
             {
+                TimerIcon.gameObject.SetActive(true);
+                ZorpIcon.gameObject.SetActive(false);
                 statusText.text = "PREPERATION!";
             }
         }
         else
         {
+            TimerIcon.gameObject.SetActive(true);
+            ZorpIcon.gameObject.SetActive(false);
             statusText.text = "NEXT WAVE IN: ";
         }
 
+
     }
 
+    public static void EnemiesRemaining()
+    {
+
+
+    }
 
     public void CountDownClock(float TimeToCountDown)
     {
