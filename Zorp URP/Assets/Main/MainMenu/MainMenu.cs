@@ -7,13 +7,10 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public Canvas MainMenuCanvas;
-    public Canvas Controls;
 
 
     void Start()
     {
-        Controls.gameObject.SetActive(false);
-        MainMenuCanvas.gameObject.SetActive(true);
     }
 
 
@@ -22,20 +19,16 @@ public class MainMenu : MonoBehaviour
 
     }
 
-    void Play()
+    public void Play()
     {
         SceneManager.LoadScene("Level One");
         Debug.Log("Test");
-    }
+    }  
 
-    void ControlsPopup()
-    {
-        MainMenuCanvas.gameObject.SetActive(false);
-        Controls.gameObject.SetActive(true);
-    }   
-
-    void Quit()
+    public void Quit()
     {
         Application.Quit();
     }
+
+    
 }

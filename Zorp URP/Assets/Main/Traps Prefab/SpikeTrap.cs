@@ -41,16 +41,16 @@ public class SpikeTrap : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "enemy")
-        {
-            HealthAgent = other.gameObject.GetComponent<ZorpMove>();
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if (other.gameObject.tag == "enemy")
+    //    {
+    //        HealthAgent = other.gameObject.GetComponent<ZorpMove>();
 
             
 
-        }
-    }
+    //    }
+    //}
 
     
 }

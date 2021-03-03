@@ -231,7 +231,7 @@ public class ThirdPersonCharacterController : MonoBehaviour
 
     }
 
-
+    [System.Obsolete]
     void visionWork()
     {
         cam.active = !cam.active;
@@ -239,6 +239,7 @@ public class ThirdPersonCharacterController : MonoBehaviour
         Invoke("visionOff", 3);
     }
 
+    [System.Obsolete]
     void visionOff()
     {
         cam.active = !cam.active;
@@ -296,14 +297,14 @@ public class ThirdPersonCharacterController : MonoBehaviour
 
 
 
-        void OnCollisionEnter(Collision collision)
-        {
-            if (collision.gameObject.CompareTag("ground"))
-            {
-                onGround = true;
-                currentJump = 0;
-            }
-        }
+        //void OnCollisionEnter(Collision collision)
+        //{
+        //    if (collision.gameObject.CompareTag("ground"))
+        //    {
+        //        onGround = true;
+        //        currentJump = 0;
+        //    }
+        //}
 
 
     }

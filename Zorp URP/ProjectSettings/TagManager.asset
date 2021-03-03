@@ -9,6 +9,7 @@ TagManager:
   - kill
   - TrapAllowed
   - TrapNotAllowed
+  - GameManager
   layers:
   - Default
   - TransparentFX

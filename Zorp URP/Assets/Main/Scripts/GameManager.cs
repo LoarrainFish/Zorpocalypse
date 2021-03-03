@@ -39,13 +39,16 @@ public class GameManager : MonoBehaviour
     private bool UIUpdate;
     public Image TimerIcon;
     public Image ZorpIcon;
+    public TextMeshProUGUI TimerText;
+    public TextMeshProUGUI ZorpsRemainingText;
+
+    public static int ZorpsAlive;
 
     // Start is called before the first frame update
     void Start()
     {
         GenerateWaves();
         UnpackWave();
-        SpawnZorps(1);
     }
 
     // Update is called once per frame
@@ -76,7 +79,7 @@ public class GameManager : MonoBehaviour
             {
                 currentWaveSegementsList.Add(Waves[i].WaveSegments[a]);
                 EnemiesThisWave += Waves[i].WaveSegments[a].AmountOfEnemies;
-                    
+
             }
             EnemiesPerWaveList.Add(EnemiesThisWave);
             EnemiesThisWave = 0;
@@ -84,6 +87,7 @@ public class GameManager : MonoBehaviour
 
         currentWaveSegements = currentWaveSegementsList.ToArray();
         QueueWave();
+        SpawnZorps(1);
     }
 
     public void QueueWave()
@@ -115,13 +119,12 @@ public class GameManager : MonoBehaviour
         {
             //First Wave. Longer Cooldown
             case 1:
-                StartCoroutine(WaveDelay(5));
-                CountDownClock(5f);
+                StartCoroutine(WaveDelay(60));
                 UpdateStatusBar(WaveNumber, false);
                 break;
             //Normal Wave Spawning State
             case 2:
-                if(WaveNumber == 0)
+                if (WaveNumber == 0)
                 {
                     WaveNumber = 1;
                 }
@@ -133,16 +136,20 @@ public class GameManager : MonoBehaviour
                 }
                 else
                 {
-                    WaveNumber++;
-                    spawnNumberWave = 0;
-                    Debug.Log("Wave Ended");
-                    SpawnZorps(3);
-                    UIUpdate = false;
+
+                    if (ZorpsAlive == 0)
+                    {
+                        SpawnZorps(4);
+                    }
+                    else 
+                    {
+                        StartCoroutine(CheckForRoundEnd());
+                    }
                 }
                 if (UIUpdate)
                 {
                     Debug.Log("Update UI");
-                    
+
                     UpdateStatusBar(WaveNumber, false);
                     UIUpdate = false;
                 }
@@ -150,8 +157,16 @@ public class GameManager : MonoBehaviour
             //Wave Downtime
             case 3:
                 UpdateStatusBar(WaveNumber, true);
-                CountDownClock(10f);
-                StartCoroutine(WaveDelay(10));
+                CountDownClock(20f);
+                StartCoroutine(WaveDelay(20));
+                break;
+            //After all Zorps are dead
+            case 4:
+                WaveNumber++;
+                spawnNumberWave = 0;
+                Debug.Log("Wave Ended");
+                UIUpdate = false;
+                SpawnZorps(3);
                 break;
         }
     }
@@ -163,12 +178,16 @@ public class GameManager : MonoBehaviour
             {
                 TimerIcon.gameObject.SetActive(false);
                 ZorpIcon.gameObject.SetActive(true);
+                ZorpsRemainingText.gameObject.SetActive(true);
+                TimerText.gameObject.SetActive(false);
                 statusText.text = "WAVE " + waveNumber;
             }
             else
             {
                 TimerIcon.gameObject.SetActive(true);
                 ZorpIcon.gameObject.SetActive(false);
+                TimerText.gameObject.SetActive(true);
+                ZorpsRemainingText.gameObject.SetActive(false);
                 statusText.text = "PREPERATION!";
             }
         }
@@ -176,21 +195,32 @@ public class GameManager : MonoBehaviour
         {
             TimerIcon.gameObject.SetActive(true);
             ZorpIcon.gameObject.SetActive(false);
+            TimerText.gameObject.SetActive(true);
+            ZorpsRemainingText.gameObject.SetActive(false);
             statusText.text = "NEXT WAVE IN: ";
         }
 
 
     }
 
-    public static void EnemiesRemaining()
+    public void EnemiesRemaining(int UpdateAmount)
     {
-
-
+        Debug.Log("ENEMIES");
+        ZorpsAlive = ZorpsAlive + UpdateAmount;
+        ZorpsRemainingText.text = ZorpsAlive.ToString();
     }
+
 
     public void CountDownClock(float TimeToCountDown)
     {
+        Debug.Log("Counting Down: " + TimeToCountDown);
         Timer.Countdown(TimeToCountDown);     
+    }
+
+    public IEnumerator CheckForRoundEnd()
+    {
+        yield return new WaitForSeconds(1);
+        SpawnZorps(2);
     }
 
     public IEnumerator WaveDelay(int TimeToWait)

@@ -6,14 +6,16 @@ using UnityEngine.AI;
 
 public class ZorpMove : MonoBehaviour
 {
+    GameObject GAMEMANAGER_GameObject;
+    GameManager _GameManager;
     [SerializeField]
     GameObject _destination;
 
-    HealthBar _healthBar;
+    public HealthBar _healthBar;
 
     NavMeshAgent _navMeshAgent;
     public GameObject Zorp;
-    private int destPoint = 0;
+    //private int destPoint = 0;
     public Transform[] patrolWayPoints;
     public int currentPatrolInt = 0;
     float distance;
@@ -29,6 +31,10 @@ public class ZorpMove : MonoBehaviour
         _navMeshAgent = this.gameObject.GetComponent<NavMeshAgent>();
         _healthBar = this.gameObject.GetComponent<HealthBar>();
         _destination = GameObject.FindGameObjectWithTag("Finish");
+
+        GAMEMANAGER_GameObject = GameObject.FindWithTag("GameManager");
+        _GameManager = GAMEMANAGER_GameObject.GetComponent<GameManager>();
+        _GameManager.EnemiesRemaining(1);
         if (_navMeshAgent == null)
         {
             Debug.LogError("The nax mesh agent component is not attached to " + gameObject.name);
@@ -46,8 +52,9 @@ public class ZorpMove : MonoBehaviour
     private void Update()
     {
 
-        if (_health == 0)
+        if (_health <= 0)
         {
+            _GameManager.EnemiesRemaining(-1);
             Destroy(this.gameObject);
         }
 
@@ -85,7 +92,6 @@ public class ZorpMove : MonoBehaviour
             int tempHealth = _health - health;
             _healthBar.SetHealth(tempHealth);
             _health = tempHealth;
-
 
     }
 }
