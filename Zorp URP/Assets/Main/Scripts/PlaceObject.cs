@@ -34,6 +34,7 @@ public class PlaceObject : MonoBehaviour
     LayerMask chosenLayers;
 
     public GameObject _player;
+    public Vector3 _playerPosition;
 
     // Start is called before the first frame update
     void Start()
@@ -45,6 +46,9 @@ public class PlaceObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Debug.DrawRay(transform.position, mousePos, Color.red);
+
         if (Input.GetKeyDown(openTrapMenu))
         {
             TrapUI.gameObject.SetActive(true);
@@ -143,7 +147,6 @@ public class PlaceObject : MonoBehaviour
         if(Physics.Raycast(ray, out hitInfo, Mathf.Infinity, layerMask))
         {
             var currentPos = hitInfo.transform.position + hitInfo.normal;
-
             Transform[] snapLocations = hitInfo.transform.GetComponentsInChildren<Transform>();           
 
             float nearestDistance = float.MaxValue;
