@@ -1,12 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Enemy : MonoBehaviour {
 
 	GameObject pathGO;
+	public List<GameObject> PathList; 
+	public GameObject[] PathArr;
 
 	public Transform targetPathNode;
-	public int pathNodeIndex = 0;
+	public int pathNodeIndex;
 
 	public float speed = 5f;
 
@@ -22,16 +25,24 @@ public class Enemy : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		pathGO = GameObject.Find("Path");
+		GetNextPathNode();
 	}
 
 	void GetNextPathNode() {
+
+		foreach(Transform child in pathGO.gameObject.transform)
+        {
+			PathList.Add(child.gameObject);
+        }
+		PathArr = PathList.ToArray();
+
 		if(pathNodeIndex < pathGO.transform.childCount) {
 			targetPathNode = pathGO.transform.GetChild(pathNodeIndex);
 			pathNodeIndex++;
 		}
 		else {
 			targetPathNode = null;
-			//ReachedGoal();
+			ReachedGoal();
 		}
 	}
 	
@@ -41,7 +52,7 @@ public class Enemy : MonoBehaviour {
 			GetNextPathNode();
 			if(targetPathNode == null) {
 				// We've run out of path!
-				//ReachedGoal();
+				ReachedGoal();
 				return;
 			}
 		}
@@ -55,6 +66,7 @@ public class Enemy : MonoBehaviour {
 			targetPathNode = null;
 		}
 		else {
+			Debug.Log("Moving");
 			// TODO: Consider ways to smooth this motion.
 
 			// Move towards node
@@ -65,10 +77,10 @@ public class Enemy : MonoBehaviour {
 
 	}
 
-	//void ReachedGoal() {
-	//	GameObject.FindObjectOfType<ScoreManager>().LoseLife();
-	//	Destroy(gameObject);
-	//}
+	void ReachedGoal() {
+		//GameObject.FindObjectOfType<ScoreManager>().LoseLife();
+		Destroy(gameObject);
+	}
 
 	public void TakeDamage(float damage) {
 		health -= damage;

@@ -542,8 +542,8 @@ GameObject:
   - component: {fileID: 1567031051824770529}
   - component: {fileID: 1567031051824770589}
   - component: {fileID: 6441992453842345932}
-  - component: {fileID: 1567031051824770588}
   - component: {fileID: 1567031051824770528}
+  - component: {fileID: 3917806989644024084}
   m_Layer: 11
   m_Name: Base 1
   m_TagString: enemy
@@ -646,38 +646,6 @@ MonoBehaviour:
   minForce: 0
   maxForce: 0
   radius: 0
---- !u!114 &1567031051824770588
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5093842268634154409}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ab23ad6fadda484392b54aa96d51a21, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _destination: {fileID: 0}
-  _healthBar: {fileID: 0}
-  Zorp: {fileID: 0}
-  patrolWayPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  currentPatrolInt: 0
-  isOiled: 0
-  _health: 350
 --- !u!114 &1567031051824770528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -691,6 +659,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 655020834418611482}
+--- !u!114 &3917806989644024084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5093842268634154409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e28a07a2b3ad65342a76a47f83d951cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetPathNode: {fileID: 0}
+  pathNodeIndex: 0
+  speed: 5
+  health: 100
+  moneyValue: 1
+  Oil: 0
+  fire: 0
 --- !u!1 &5295934470130278371
 GameObject:
   m_ObjectHideFlags: 0

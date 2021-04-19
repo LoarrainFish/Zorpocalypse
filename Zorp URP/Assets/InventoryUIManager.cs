@@ -28,7 +28,7 @@ public class InventoryUIManager : MonoBehaviour
             }
             else
             {
-                Debug.Log("Pressed L 2 ");
+                //Debug.Log("Pressed L 2 ");
                 TrapUIEditor.gameObject.SetActive(false);
                 LockMouse._LockMouse();
                 UIEnabled = false;

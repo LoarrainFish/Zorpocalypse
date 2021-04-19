@@ -137,7 +137,7 @@ public class GameManager : MonoBehaviour
         {
             //First Wave. Longer Cooldown
             case 1:
-                StartCoroutine(WaveDelay(30));
+                StartCoroutine(WaveDelay(10));
                 UpdateStatusBar(WaveNumber, false);
                 break;
             //Normal Wave Spawning State

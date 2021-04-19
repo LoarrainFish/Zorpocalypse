@@ -11,6 +11,7 @@ TagManager:
   - TrapNotAllowed
   - GameManager
   - QueueVisualManager
+  - Path
   layers:
   - Default
   - TransparentFX

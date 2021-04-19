@@ -2,9 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class PlaceObject : MonoBehaviour
 {
+
     [SerializeField]
     private GameObject[] placeableObjectPrefabs;
 
@@ -63,12 +65,40 @@ public class PlaceObject : MonoBehaviour
 
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha4))
+        if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             TrapUI.gameObject.SetActive(false);
             HandleNewObjectHotKey(1);
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.lockState = CursorLockMode.None;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            TrapUI.gameObject.SetActive(false);
+            HandleNewObjectHotKey(2);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            TrapUI.gameObject.SetActive(false);
+            HandleNewObjectHotKey(3);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            TrapUI.gameObject.SetActive(false);
+            HandleNewObjectHotKey(4);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            TrapUI.gameObject.SetActive(false);
+            HandleNewObjectHotKey(5);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            TrapUI.gameObject.SetActive(false);
+            HandleNewObjectHotKey(6);
         }
 
         if (trapUIOpen == true)
