@@ -20,6 +20,8 @@ public class ZorpMove : MonoBehaviour
     public int currentPatrolInt = 0;
     float distance;
 
+    private ExplodeZorp eZ;
+
     public bool isOiled;
 
     public int _health = 20;
@@ -45,6 +47,7 @@ public class ZorpMove : MonoBehaviour
             SetDestination();
         }
 
+        eZ = this.gameObject.GetComponent<ExplodeZorp>();
 
 
     }
@@ -56,6 +59,7 @@ public class ZorpMove : MonoBehaviour
         {
             _GameManager.EnemiesRemaining(-1);
             Destroy(this.gameObject);
+            eZ.Explosion();
         }
 
         if (isOiled)

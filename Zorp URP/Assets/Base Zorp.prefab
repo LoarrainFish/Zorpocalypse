@@ -541,6 +541,7 @@ GameObject:
   - component: {fileID: 1567031051824770591}
   - component: {fileID: 1567031051824770529}
   - component: {fileID: 1567031051824770589}
+  - component: {fileID: 6441992453842345932}
   - component: {fileID: 1567031051824770588}
   - component: {fileID: 1567031051824770528}
   m_Layer: 11
@@ -627,6 +628,24 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &6441992453842345932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5093842268634154409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78dadb3e3daf4c644b261067bb570add, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosion: {fileID: 2328106789012852787, guid: 61abe67f86d5c6144a7a351030939c62,
+    type: 3}
+  explosionOffset: {x: 0, y: 0, z: 0}
+  minForce: 0
+  maxForce: 0
+  radius: 0
 --- !u!114 &1567031051824770588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -640,6 +659,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _destination: {fileID: 0}
+  _healthBar: {fileID: 0}
   Zorp: {fileID: 0}
   patrolWayPoints:
   - {fileID: 0}
