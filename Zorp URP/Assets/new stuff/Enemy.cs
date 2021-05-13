@@ -25,6 +25,7 @@ public class Enemy : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		pathGO = GameObject.Find("Path");
+		Debug.Log(pathGO.name);
 		GetNextPathNode();
 	}
 
@@ -66,7 +67,7 @@ public class Enemy : MonoBehaviour {
 			targetPathNode = null;
 		}
 		else {
-			Debug.Log("Moving");
+			//Debug.Log("Moving");
 			// TODO: Consider ways to smooth this motion.
 
 			// Move towards node
