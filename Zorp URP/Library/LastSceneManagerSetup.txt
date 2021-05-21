@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Main/Final_Scene_For_Submission.unity
+- path: Assets/Main/Level One/Level One.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

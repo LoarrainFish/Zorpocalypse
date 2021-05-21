@@ -66,7 +66,7 @@ public class Gun : MonoBehaviour
             Debug.Log(rayHit.collider.name);
 
             if (rayHit.collider.CompareTag("enemy"))
-                rayHit.collider.GetComponent<ZorpMove>().TakeDamage(damage);
+                rayHit.collider.GetComponent<EnemyNew>().TakeDamage(damage);
 
         }
 
