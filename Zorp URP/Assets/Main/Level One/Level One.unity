@@ -24951,6 +24951,21 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6441992453842345932, guid: 16e97d0f71fea3c4296e8fe95787b154,
+        type: 3}
+      propertyPath: radius
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6441992453842345932, guid: 16e97d0f71fea3c4296e8fe95787b154,
+        type: 3}
+      propertyPath: maxForce
+      value: 750
+      objectReference: {fileID: 0}
+    - target: {fileID: 6441992453842345932, guid: 16e97d0f71fea3c4296e8fe95787b154,
+        type: 3}
+      propertyPath: minForce
+      value: 125
+      objectReference: {fileID: 0}
     - target: {fileID: 7704446695083681628, guid: 16e97d0f71fea3c4296e8fe95787b154,
         type: 3}
       propertyPath: m_RootOrder
@@ -108462,7 +108477,7 @@ MonoBehaviour:
   fpsCam: {fileID: 3456134635591890233}
   whatIsEnemy:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 2048
   ammo: {fileID: 731693734}
 --- !u!1 &1287321991410892600
 GameObject:

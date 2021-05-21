@@ -544,7 +544,6 @@ GameObject:
   - component: {fileID: 6441992453842345932}
   - component: {fileID: 4204576410093047298}
   - component: {fileID: 1567031051824770528}
-  - component: {fileID: 3917806989644024084}
   m_Layer: 11
   m_Name: Base 1
   m_TagString: enemy
@@ -644,9 +643,9 @@ MonoBehaviour:
   explosion: {fileID: 2328106789012852787, guid: 61abe67f86d5c6144a7a351030939c62,
     type: 3}
   explosionOffset: {x: 0, y: 0, z: 0}
-  minForce: 0
-  maxForce: 0
-  radius: 0
+  minForce: 125
+  maxForce: 750
+  radius: 10
 --- !u!114 &4204576410093047298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -659,6 +658,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e076efcdbeae24418402186da8a0f9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 10
+  health: 100
+  Oil: 0
+  fire: 0
 --- !u!114 &1567031051824770528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -672,27 +675,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 655020834418611482}
---- !u!114 &3917806989644024084
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5093842268634154409}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e28a07a2b3ad65342a76a47f83d951cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PathList: []
-  PathArr: []
-  targetPathNode: {fileID: 0}
-  pathNodeIndex: 0
-  speed: 5
-  health: 100
-  moneyValue: 1
-  Oil: 0
-  fire: 0
 --- !u!1 &5295934470130278371
 GameObject:
   m_ObjectHideFlags: 0

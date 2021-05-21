@@ -15,8 +15,11 @@ public class EnemyNew : MonoBehaviour
     public bool Oil;
     public bool fire;
 
+    
+
     private void Start()
     {
+        
         target = Waypoints.points[0];
         nav = this.GetComponent<NavMeshAgent>();
     }
@@ -33,13 +36,14 @@ public class EnemyNew : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
+            this.gameObject.GetComponent<ExplodeZorp>().Explosion();
             Die();
         }
     }
 
     public void Die()
     {
-
+        
         Destroy(gameObject);
     }
 }
